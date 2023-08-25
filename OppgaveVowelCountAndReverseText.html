@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vokal teller Oppgave</title>
+    <style>
+        body {
+            margin-top: 40px;
+            background-color: #2e2e2e;
+        }
+        h1,h2 {
+            color: orange;
+            text-align: center;
+        }
+
+        #app {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e2e2e2;
+            text-align: center;
+
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        #stringedTextDiv {
+            height: 20px;
+            background-color: lightgray;
+            text-align: center;
+        }
+
+        #numberOfVowelsDiv {
+            height: 20px;
+            background-color: lightgray;
+            text-align: center;
+        }
+        #textField {
+            text-align: center;
+        }
+        #reversedTextDiv {
+            height: 20px;
+            background-color: lightgray;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vowel Counter from custom input!</h1>
+    <h2>can allso print the text in reverse</h2>
+    <div id="app">
+        <div id="container">Text to string:
+            <input id="textField" type="text" onchange="printText()">
+            <div id="stringedTextDiv"></div>
+            <button onclick="countVowels()">Click me to count the number of vowels</button>
+            <div id="numberOfVowelsDiv"></div>
+            <button onclick="displayReversedText()">Click me to reverse the text</button>
+                <div id="reversedTextDiv"></div>
+
+        </div>
+    </div>
+
+    <script>
+        //Model
+        let aCounter = 0;
+        let eCounter = 0;
+        let iCounter = 0;
+        let oCounter = 0;
+        let uCounter = 0;
+        let yCounter = 0;
+        let aeCounter = 0;
+        let oeCounter = 0;
+        let aaCounter = 0;
+
+        //View
+
+
+        //Controller
+        function printText() {
+            const inputElement = document.getElementById('textField');
+            const inputText = inputElement.value.toLowerCase();
+            document.getElementById('stringedTextDiv').innerHTML = inputText;
+        }
+
+        function countVowels() {
+            const inputElement = document.getElementById('textField');
+            const inputString = inputElement.value.toLowerCase();
+
+
+            for (let index = 0; index <= inputString.length; index++) {
+                const char = inputString[index];
+                switch (char) {
+                    case 'a':
+                        aCounter++;
+                        break;
+                    case 'e':
+                        eCounter++;
+                        break;
+                    case 'i':
+                        iCounter++;
+                        break;
+                    case 'o':
+                        oCounter++;
+                        break;
+                    case 'u':
+                        uCounter++;
+                        break;
+                    case 'y':
+                        yCounter++;
+                        break;
+                    case 'æ':
+                        aeCounter++;
+                        break;
+                    case 'ø':
+                        oeCounter++;
+                        break;
+                    case 'å':
+                        aaCounter++;
+                        break;
+
+                }
+            }
+            let totalCounter = aCounter + eCounter + iCounter +
+            oCounter + uCounter + yCounter + aeCounter + oeCounter + aaCounter;
+            document.getElementById('numberOfVowelsDiv').innerHTML =
+             'Total number of vowels:' +totalCounter;
+        }
+
+        function reverseText(){
+            const inputElement = document.getElementById('textField');
+            const inputText = inputElement.value;
+
+            let reversedText = "";
+            for (let index = inputText.length -1; index >= 0; index--){
+                reversedText += inputText[index];
+            }
+            return reversedText;
+        }
+        
+        function displayReversedText(){
+            const reversedText = reverseText();
+            const outputElement = document.getElementById('reversedTextDiv');
+            outputElement.textContent = reversedText;
+        }
+
+        
+        
+
+    </script>
+
+</body>
+
+</html>
